@@ -48,6 +48,15 @@ jobs:
           ./gradlew clean build
           find -name \*.jar
 
+      - name: archive built JAR for graphql-kotlin-spring-server
+        uses: actions/upload-artifact@v2
+        with:
+          name: graphql-kotlin-spring-server
+          path: |
+            ./plugins/graphql-kotlin-maven-plugin/build/local-repo/com/expediagroup/graphql-kotlin-spring-server/6.0.0-SNAPSHOT/graphql-kotlin-spring-server-6.0.0-SNAPSHOT.jar
+            ./servers/graphql-kotlin-spring-server/build/libs/graphql-kotlin-spring-server-6.0.0-SNAPSHOT.jar
+          retention-days: 7
+
       - name: Archive failure build reports
         uses: actions/upload-artifact@v2
         if: failure()
