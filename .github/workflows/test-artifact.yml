@@ -1,0 +1,28 @@
+name: artifact capture test
+
+on:
+  pull_request:
+    branches:
+      - master
+      - '*.x.x'
+    paths-ignore:
+      - 'website/**'
+      - '*.md'
+
+jobs:
+  build:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: seed a file to capture as artifact
+        run: echo "hala hala get dola" > sample-cap.txt
+
+      - name: archive seeded file hopefully
+        uses: actions/upload-artifact@v2
+        with:
+          name: sampleArtifactTest1
+          path: ./sample-cap.txt
+          retention-days: 7
