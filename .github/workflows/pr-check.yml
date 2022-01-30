@@ -45,9 +45,8 @@ jobs:
 
       - name: Build library with Gradle
         run: |
-          ls
           ./gradlew clean build
-          ls *.jar
+          find -name \*.jar
 
       - name: Archive failure build reports
         uses: actions/upload-artifact@v2
